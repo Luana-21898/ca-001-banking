@@ -74,6 +74,41 @@ public class MenuBuilder {
 
     }
 
+
+    private static int transactionMenu() {
+
+        int selection;
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("-------------------------\n");
+        System.out.println("1 - Lodge Money");
+        System.out.println("2 - Withdraw Money");
+
+
+        selection = input.nextInt();
+        return selection;
+
+    }
+
+    private static BankingTransaction CreateTransactionLodgeForm() {
+
+        System.out.println("Transaction lodge form goes here");
+
+        BankingTransactionLodge btl = new BankingTransactionLodge();
+
+        return btl;
+    }
+
+    private static BankingTransaction CreateTransactionWithdrawForm() {
+
+        System.out.println("Transaction widthraw form goes here");
+
+        BankingTransactionWithdraw btl = new BankingTransactionWithdraw();
+
+        return btl;
+    }
+
+
     private static  void DeleteCustomer() {
 
 
@@ -86,9 +121,9 @@ public class MenuBuilder {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-------------------------\n");
-        System.out.println("1 - Create Customer Account");
-        System.out.println("2 - Edit Customer Account");
-        System.out.println("3 - List of Customers");
+        System.out.println("1 - Add Customer");
+        System.out.println("2 - Delete Customer");
+        System.out.println("3 - Create Transaction");
         System.out.println("4 - Quit");
 
         selection = input.nextInt();
@@ -97,18 +132,10 @@ public class MenuBuilder {
     }
 
     private static String  getBankEmployeePin() {
-
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter PIN");
-        String employeePin = "A1234";
 
-        if (employeePin == employeePin){
-            System.out.println("Access Authorized.");
-        } else{
-            System.out.println("Wrong PIN. Please try again.");
-        }
-
-            String pin = myObj.nextLine();  // Read user input
+        String pin = myObj.nextLine();  // Read user input
         System.out.println("PIN is: " + pin);  // Output user input
 
         return pin;
@@ -134,11 +161,43 @@ public class MenuBuilder {
 
                     int bankEmployeeAction = MenuBuilder.bankingMenu();
 
-                    // Write a switch statement here
-                    // Here I demo creating a customer as if I used a switch
-                    Customer newCustomer = AddCustomerForm(); // this calls the form, which then creates the custsomer
-                    // validate the newCustomer
-                    BankingAction.AddCustomer(newCustomer);
+
+                    switch (bankEmployeeAction) {
+
+                        case 1:
+                            Customer newCustomer = AddCustomerForm();
+                            BankingAction.AddCustomer(newCustomer);
+                            break;
+                        case 2: break;
+                        case AppConstants.TRANSACTION_CREATE:
+                            int transactionChoice = MenuBuilder.transactionMenu();
+
+                            switch(transactionChoice) {
+                                case AppConstants.TRANSACTION_LODGE:
+
+                                    BankingTransaction btl = CreateTransactionLodgeForm();
+                                    BankingAction.CreateTransaction(btl);
+
+                                    break;
+                                case AppConstants.TRANSACTION_WITHDRAW:
+                                    BankingTransaction btw = CreateTransactionWithdrawForm();
+                                    BankingAction.CreateTransaction(btw);
+
+                                    break;
+
+                            }
+
+
+
+
+                            break;
+
+
+                    }
+
+
+
+
 
 
                 } else {
@@ -159,7 +218,7 @@ public class MenuBuilder {
 
                 // if (isAuthenticated) {
 
-                // int customerAction = MenuBuilder.customerMenu();
+                // int customerAction = MenuBuilder.customerMneu();
 
                 // userChoice = MenuBuilder.customerMenu();
 

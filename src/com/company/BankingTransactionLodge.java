@@ -1,4 +1,4 @@
 package com.company;
 
-public class BankingTransactionLodge {
+public class BankingTransactionLodge extends BankingTransaction{
 }
