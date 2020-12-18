@@ -4,15 +4,14 @@ import java.util.Scanner;
 
 public class MenuBuilder {
 
-
-
     private static int startMenu() {
 
         int selection;
         Scanner input = new Scanner(System.in);
         /***************************************************/
 
-        System.out.println("Choose from these choices");
+        System.out.println("Welcome to JavaBank!");
+        System.out.println("Choose from these choices below:");
 
         System.out.println("-------------------------\n");
         System.out.println("1 - Bank Employee Login");
@@ -30,10 +29,10 @@ public class MenuBuilder {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-------------------------\n");
-        System.out.println("1 - Login");
-        System.out.println("2 - customerMenuOption 2");
-        System.out.println("3 - customerMenuOption 3");
-        System.out.println("4 - customerMenuQuit");
+        System.out.println("1 - Saving Account");
+        System.out.println("2 - Current Account");
+        System.out.println("3 - History Account");
+        System.out.println("4 - Quit");
 
         selection = input.nextInt();
         return selection;
@@ -46,22 +45,33 @@ public class MenuBuilder {
 
         String firstName = myObj.nextLine();  // Read user input
         System.out.println("FirstName  is: " + firstName);  // Output user input
+        System.out.println();
+
+        System.out.println("Enter Last Name");
 
         String lastName = myObj.nextLine();  // Read user input
         System.out.println("LastName  is: " + lastName);  // Output user input
+        System.out.println();
+
+        System.out.println("Enter Account Number");
+
+        String accountNumber = myObj.nextLine();  // Read user input
+        System.out.println("Account Number  is: " + accountNumber);  // Output user input
+        System.out.println();
+
+        System.out.println("Enter PIN");
+
+        String pinNumber = myObj.nextLine();  // Read user input
+        System.out.println("PIN Number  is: " + pinNumber);  // Output user input
+        System.out.println();
 
         // You might validate here.....
 
-        Customer customer = new Customer(firstName, lastName);
+        Customer customer = new Customer(firstName, lastName, accountNumber, pinNumber);
         // And if happy /// create the customer
 
         return customer;
 
-    }
-
-    private static void CreateTransactionForm(){
-
-        System.out.println("Transaction form goes here");
     }
 
     private static  void DeleteCustomer() {
@@ -76,9 +86,9 @@ public class MenuBuilder {
         Scanner input = new Scanner(System.in);
 
         System.out.println("-------------------------\n");
-        System.out.println("1 - Add Customer");
-        System.out.println("2 - Delete Customer");
-        System.out.println("3 - Creating Transaction");
+        System.out.println("1 - Create Customer Account");
+        System.out.println("2 - Edit Customer Account");
+        System.out.println("3 - List of Customers");
         System.out.println("4 - Quit");
 
         selection = input.nextInt();
@@ -87,10 +97,18 @@ public class MenuBuilder {
     }
 
     private static String  getBankEmployeePin() {
+
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         System.out.println("Enter PIN");
+        String employeePin = "A1234";
 
-        String pin = myObj.nextLine();  // Read user input
+        if (employeePin == employeePin){
+            System.out.println("Access Authorized.");
+        } else{
+            System.out.println("Wrong PIN. Please try again.");
+        }
+
+            String pin = myObj.nextLine();  // Read user input
         System.out.println("PIN is: " + pin);  // Output user input
 
         return pin;
@@ -119,7 +137,7 @@ public class MenuBuilder {
                     // Write a switch statement here
                     // Here I demo creating a customer as if I used a switch
                     Customer newCustomer = AddCustomerForm(); // this calls the form, which then creates the custsomer
-                    // validdate the newCustomer
+                    // validate the newCustomer
                     BankingAction.AddCustomer(newCustomer);
 
 
@@ -141,7 +159,7 @@ public class MenuBuilder {
 
                 // if (isAuthenticated) {
 
-                // int customerAction = MenuBuilder.customerMneu();
+                // int customerAction = MenuBuilder.customerMenu();
 
                 // userChoice = MenuBuilder.customerMenu();
 
